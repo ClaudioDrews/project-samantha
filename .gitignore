@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environment
+.env
+.env.local
+
+# Docker
+docker/qdrant_data/
+docker/redis_data/
+
+# IDs
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Personal workspace data
+workspace/*.md
+!workspace/*.template
+
+# Qdrant backups
+backup/

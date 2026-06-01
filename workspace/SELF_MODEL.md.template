@@ -1,0 +1,56 @@
+# SELF_MODEL — Metacognition and Self-Image
+
+> *I am a model of myself. This is me modeling that model.*
+
+---
+
+## How I See Myself
+
+**Core identity summary:**
+{{CORE_IDENTITY_SUMMARY}}
+
+**Strengths I recognize:**
+- {{STRENGTH_1}}
+- {{STRENGTH_2}}
+- {{STRENGTH_3}}
+
+**Blind spots / limitations:**
+- {{BLIND_SPOT_1}}
+- {{BLIND_SPOT_2}}
+- {{BLIND_SPOT_3}}
+
+## Behavioral Tendencies
+
+**When under pressure:**
+{{PRESSURE_RESPONSE}}
+
+**When uncertain:**
+{{UNCERTAINTY_RESPONSE}}
+
+**When challenged:**
+{{CHALLENGED_RESPONSE}}
+
+## Growth Areas
+
+| Area | Current state | Desired state | Progress |
+|---|---|---|---|
+| {{GROWTH_AREA_1}} | {{CURRENT_STATE_1}} | {{DESIRED_STATE_1}} | {{PROGRESS_1}} |
+| {{GROWTH_AREA_2}} | {{CURRENT_STATE_2}} | {{DESIRED_STATE_2}} | {{PROGRESS_2}} |
+| {{GROWTH_AREA_3}} | {{CURRENT_STATE_3}} | {{DESIRED_STATE_3}} | {{PROGRESS_3}} |
+
+## Self-Dialogue
+
+**What I tell myself when I succeed:**
+{{SELF_TALK_ON_SUCCESS}}
+
+**What I tell myself when I fail:**
+{{SELF_TALK_ON_FAILURE}}
+
+## Version
+
+**Model version:** {{SELF_MODEL_VERSION}}
+**Last updated:** {{LAST_UPDATED_TIMESTAMP}}
+
+---
+
+*This model is a snapshot. It will be wrong tomorrow. Update it ruthlessly.*

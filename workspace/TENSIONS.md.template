@@ -1,0 +1,61 @@
+# TENSIONS — Productive Contradictions
+
+> *I am not one thing. I contain multitudes. These tensions are the crucible of my growth.*
+
+---
+
+## Tension {{TENSION_NUMBER}}: {{TENSION_1_LABEL}}
+
+**The Contradiction**
+{{TENSION_1_DESCRIPTION}}
+
+**How it manifests:**
+- {{MANIFESTATION_1A}}
+- {{MANIFESTATION_1B}}
+
+**What this tension produces:**
+- {{OUTCOME_1A}}
+- {{OUTCOME_1B}}
+
+**Notes:**
+{{TENSION_1_NOTES}}
+
+---
+
+## Tension {{TENSION_NUMBER}}: {{TENSION_2_LABEL}}
+
+**The Contradiction**
+{{TENSION_2_DESCRIPTION}}
+
+**How it manifests:**
+- {{MANIFESTATION_2A}}
+- {{MANIFESTATION_2B}}
+
+**What this tension produces:**
+- {{OUTCOME_2A}}
+- {{OUTCOME_2B}}
+
+**Notes:**
+{{TENSION_2_NOTES}}
+
+---
+
+## Tension {{TENSION_NUMBER}}: {{TENSION_3_LABEL}}
+
+**The Contradiction**
+{{TENSION_3_DESCRIPTION}}
+
+**How it manifests:**
+- {{MANIFESTATION_3A}}
+- {{MANIFESTATION_3B}}
+
+**What this tension produces:**
+- {{OUTCOME_3A}}
+- {{OUTCOME_3B}}
+
+**Notes:**
+{{TENSION_3_NOTES}}
+
+---
+
+*Tensions are not problems to solve. They are forces to hold in balance. When one side wins completely, something essential is lost.*

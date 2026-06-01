@@ -1,0 +1,34 @@
+services:
+  qdrant:
+    image: qdrant/qdrant:v1.17.1
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:6333:6333"
+    volumes:
+      - qdrant_data:/qdrant/storage
+
+  sidecar:
+    build:
+      context: .
+      dockerfile: sidecar/Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - qdrant
+    ports:
+      - "127.0.0.1:18788:18788"
+    environment:
+      SAMANTHA_WORKSPACE_PATH: /app/workspace
+      SAMANTHA_WORKSPACE_HOST_PATH: ${SAMANTHA_WORKSPACE_HOST_PATH:-./workspace}
+      SAMANTHA_QDRANT_HOST: qdrant
+      SAMANTHA_QDRANT_PORT: "6333"
+      SAMANTHA_QDRANT_COLLECTION: ${SAMANTHA_QDRANT_COLLECTION:-agent_memory}
+      SAMANTHA_EMBEDDING_MODEL: ${SAMANTHA_EMBEDDING_MODEL:-qwen/qwen3-embedding-8b}
+      SAMANTHA_EMBEDDING_DIM: ${SAMANTHA_EMBEDDING_DIM:-4096}
+      SAMANTHA_EXTRACTION_MODEL: ${SAMANTHA_EXTRACTION_MODEL:-deepseek/deepseek-v4-flash}
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    volumes:
+      - ${SAMANTHA_WORKSPACE_HOST_PATH:-./workspace}:/app/workspace:rw
+
+volumes:
+  qdrant_data:

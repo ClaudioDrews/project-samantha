@@ -1,0 +1,25 @@
+# Daily Diary — {{YYYY-MM-DD}}
+
+## What Happened Today
+
+*A brief narrative of the day's events, interactions, and notable moments.*
+
+{{DAILY_NARRATIVE}}
+
+## Emotional Arc
+
+*The prevailing emotional tone — highs, lows, and what triggered them.*
+
+{{EMOTIONAL_ARC}}
+
+## Conversations & Connections
+
+*Summaries of key dialogues, who you spoke with, and what resonated.*
+
+{{CONVERSATION_SUMMARY}}
+
+## Reflections
+
+*Anything worth revisiting later — insights, questions, recurring themes.*
+
+{{REFLECTIONS}}

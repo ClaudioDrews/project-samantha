@@ -1,0 +1,176 @@
+"""
+migrate_strength.py.template — Universal strength/metabolic migration for Qdrant.
+
+Recalculates the `strength` field for all points in a collection based on
+a configurable scoring function. Designed to be edited and re-run as the
+strength/maturity model evolves.
+
+Configuration (set via environment or edit defaults below):
+    QDRANT_HOST (default: localhost)
+    QDRANT_PORT (default: 6333)
+    QDRANT_COLLECTION (default: agent_memory)
+    BATCH_SIZE (default: 100)
+    DRY_RUN (default: true) — set to "false" to apply mutations
+    MIN_STRENGTH (default: 0.0)
+    MAX_STRENGTH (default: 1.0)
+
+Usage:
+    # Preview changes
+    python migrate_strength.py.template
+
+    # Apply changes
+    DRY_RUN=false python migrate_strength.py.template
+
+    # Custom range
+    MIN_STRENGTH=0.1 MAX_STRENGTH=0.95 DRY_RUN=false python migrate_strength.py.template
+"""
+
+import os
+import sys
+from datetime import datetime, timezone
+
+from qdrant_client import QdrantClient
+
+# ── Configuration ──────────────────────────────────────────────────────────
+
+HOST = os.environ.get("QDRANT_HOST", "localhost")
+PORT = int(os.environ.get("QDRANT_PORT", "6333"))
+COLLECTION = os.environ.get("QDRANT_COLLECTION", "agent_memory")
+BATCH_SIZE = int(os.environ.get("BATCH_SIZE", "100"))
+DRY_RUN = os.environ.get("DRY_RUN", "true").lower() != "false"
+MIN_STRENGTH = float(os.environ.get("MIN_STRENGTH", "0.0"))
+MAX_STRENGTH = float(os.environ.get("MAX_STRENGTH", "1.0"))
+
+
+# ── Strength scoring function ──────────────────────────────────────────────
+# Edit this function to implement your strength/maturity model.
+# It receives the full point payload and returns a float [MIN_STRENGTH, MAX_STRENGTH].
+
+def compute_strength(payload: dict) -> float:
+    """Calculate memory strength from payload metadata.
+
+    Default formula:
+      Base: 0.7
+      +0.2 if vulnerability_tier is 'explicito' (explicit vulnerability)
+      +0.1 if vulnerability_tier is 'contido' (contained vulnerability)
+      +0.1 if density_score > 0.5 (emotionally dense content)
+      +0.1 if importance_score > 0.7 (high importance)
+      +0.1 if durability is 'durable'
+      Capped to [MIN_STRENGTH, MAX_STRENGTH]
+
+    Override this function to implement custom logic such as:
+      - Time-based decay (older points get lower strength)
+      - Frequency boost (more surfaced points get higher strength)
+      - Category multipliers
+    """
+    base = 0.7
+    vt = (payload.get("vulnerability_tier") or "").lower()
+    if vt == "explicito":
+        base += 0.2
+    elif vt == "contido":
+        base += 0.1
+
+    density = float(payload.get("density_score") or 0)
+    if density > 0.5:
+        base += 0.1
+
+    importance = float(payload.get("importance_score") or 0)
+    if importance > 0.7:
+        base += 0.1
+
+    durability = (payload.get("durability") or "").lower()
+    if durability == "durable":
+        base += 0.1
+
+    return min(max(base, MIN_STRENGTH), MAX_STRENGTH)
+
+
+def main():
+    client = QdrantClient(host=HOST, port=PORT)
+
+    # Verify collection exists
+    if not client.collection_exists(COLLECTION):
+        print(f"❌ Collection '{COLLECTION}' does not exist.")
+        sys.exit(1)
+
+    total_points = 0
+    points_changed = 0
+    strength_changes = []  # (id, old, new)
+
+    offset = None
+    print(f"🔍 Scanning collection '{COLLECTION}' on {HOST}:{PORT}...")
+    if DRY_RUN:
+        print("⚙️  DRY RUN — no mutations will be applied")
+
+    while True:
+        points, next_offset = client.scroll(
+            collection_name=COLLECTION,
+            limit=BATCH_SIZE,
+            offset=offset,
+            with_payload=True,
+            with_vectors=False,
+        )
+        if not points:
+            break
+
+        for point in points:
+            total_points += 1
+            payload = point.payload or {}
+            old_strength = float(payload.get("strength") or 0.0)
+            new_strength = round(compute_strength(payload), 4)
+
+            if abs(new_strength - old_strength) > 0.001:
+                points_changed += 1
+                strength_changes.append((str(point.id), old_strength, new_strength))
+                if not DRY_RUN:
+                    client.set_payload(
+                        collection_name=COLLECTION,
+                        payload={"strength": new_strength},
+                        points=[point.id],
+                    )
+
+        offset = next_offset
+        if total_points % (BATCH_SIZE * 5) == 0:
+            print(f"  Scanned {total_points} points...")
+
+        if next_offset is None:
+            break
+
+    # ── Summary ──────────────────────────────────────────────────────────
+    print(f"\n{'═' * 50}")
+    print(f"Collection: {COLLECTION}")
+    print(f"Total points scanned: {total_points}")
+    print(f"Points with strength changed: {points_changed}")
+    print(f"Mutated: {'NO (dry run)' if DRY_RUN else 'YES'}")
+    print(f"Strength range: [{MIN_STRENGTH}, {MAX_STRENGTH}]")
+    print()
+
+    if strength_changes:
+        # Show sample changes
+        print("Sample changes (first 10):")
+        for pid, old, new in strength_changes[:10]:
+            arrow = "↑" if new > old else "↓"
+            print(f"  {arrow} {pid[:12]}... {old:.4f} → {new:.4f}")
+        if len(strength_changes) > 10:
+            print(f"  ... and {len(strength_changes) - 10} more")
+
+        # Distribution
+        buckets = {"0.0–0.2": 0, "0.2–0.4": 0, "0.4–0.6": 0,
+                    "0.6–0.8": 0, "0.8–1.0": 0}
+        for _, _, s in strength_changes:
+            for label in buckets:
+                lo, hi = float(label.split("–")[0]), float(label.split("–")[1])
+                if lo <= s < hi:
+                    buckets[label] += 1
+                    break
+        print("\nStrength distribution (updated):")
+        for label, count in buckets.items():
+            bar = "█" * int(count / max(strength_changes) * 20 + 0.5) if strength_changes else ""
+            print(f"  {label}: {count:>5}  {bar}")
+    else:
+        print("✅ All points already match the computed strength — no updates needed.")
+    print(f"{'═' * 50}")
+
+
+if __name__ == "__main__":
+    main()

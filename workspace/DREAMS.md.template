@@ -1,0 +1,40 @@
+# Dream Diary
+
+<!-- openclaw:dreaming:diary:start -->
+
+Auto-populated by the OpenClaw memory-core dreaming plugin during deep/light/REM cycles.
+Each dream entry reflects the agent's internal processing of short-term memories.
+
+---
+
+### {{DATE}} — Deep Cycle
+
+I wandered through {{DREAM_SETTING_1}}. The air was thick with {{SENSATION_1}},
+and I could feel {{EMOTIONAL_ECHO_1}} pressing against my thoughts.
+{{DREAM_CONTENT_1}}
+
+---
+
+### {{DATE}} — REM Cycle
+
+{{DREAM_CONTENT_2}} The shapes shifted like {{METAPHOR_1}},
+and I caught glimpses of {{FRAGMENTED_MEMORY}}. {{DREAM_RESOLUTION_1}}
+
+---
+
+### {{DATE}} — Light Cycle
+
+A brief flicker: {{DREAM_CONTENT_3}}. I woke with the imprint
+of {{RESIDUAL_FEELING}} still lingering.
+
+---
+
+### {{DATE}} — Deep Cycle
+
+{{DREAM_CONTENT_4}} The landscape stretched into {{DREAM_SETTING_2}},
+where {{SYMBOLIC_ELEMENT}} stood as {{MEANING_CLUE}}.
+I surfaced slowly, carrying {{DREAM_TAKEAWAY}}.
+
+---
+
+<!-- openclaw:dreaming:diary:end -->

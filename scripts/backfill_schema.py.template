@@ -1,0 +1,128 @@
+"""
+backfill_schema.py.template — Universal schema backfill for Qdrant points.
+
+Scans all points in a Qdrant collection and ensures they have the
+required schema fields. Missing fields are filled with defaults.
+
+Configuration (set via environment or edit defaults below):
+    QDRANT_HOST (default: localhost)
+    QDRANT_PORT (default: 6333)
+    QDRANT_COLLECTION (default: agent_memory)
+    BATCH_SIZE (default: 100)
+    DRY_RUN (default: true) — set to "false" to apply mutations
+
+Usage:
+    # Preview changes (dry run)
+    python backfill_schema.py.template
+
+    # Apply changes
+    DRY_RUN=false python backfill_schema.py.template
+
+    # Custom collection
+    QDRANT_COLLECTION=custom_collection python backfill_schema.py.template
+"""
+
+import os
+import sys
+from collections import Counter
+
+from qdrant_client import QdrantClient
+from qdrant_client.models import FieldCondition, Filter, MatchAny
+
+# ── Configuration ──────────────────────────────────────────────────────────
+
+HOST = os.environ.get("QDRANT_HOST", "localhost")
+PORT = int(os.environ.get("QDRANT_PORT", "6333"))
+COLLECTION = os.environ.get("QDRANT_COLLECTION", "agent_memory")
+BATCH_SIZE = int(os.environ.get("BATCH_SIZE", "100"))
+DRY_RUN = os.environ.get("DRY_RUN", "true").lower() != "false"
+
+# ── Schema defaults ────────────────────────────────────────────────────────
+# Edit this dictionary to define the schema fields and their default values.
+# Each key is a payload field name. The value is the default to set if missing.
+
+SCHEMA_DEFAULTS = {
+    "processing_state": "unprocessed",
+    "surface_count": 0,
+    "last_surfaced_at": None,
+    "sit_count": 0,
+    "sit_notes": [],
+    "resolved_at": None,
+    "strength": 0.7,
+    "importance_score": 0.5,
+}
+
+
+def main():
+    client = QdrantClient(host=HOST, port=PORT)
+
+    # Verify collection exists
+    if not client.collection_exists(COLLECTION):
+        print(f"❌ Collection '{COLLECTION}' does not exist.")
+        sys.exit(1)
+
+    # Scroll all points
+    total_points = 0
+    points_updated = 0
+    missing_fields = Counter()
+    offset = None
+
+    print(f"🔍 Scanning collection '{COLLECTION}' on {HOST}:{PORT}...")
+    if DRY_RUN:
+        print("⚙️  DRY RUN — no mutations will be applied")
+
+    while True:
+        points, next_offset = client.scroll(
+            collection_name=COLLECTION,
+            limit=BATCH_SIZE,
+            offset=offset,
+            with_payload=True,
+            with_vectors=False,
+        )
+        if not points:
+            break
+
+        for point in points:
+            total_points += 1
+            payload = point.payload or {}
+            updates = {}
+
+            for field, default in SCHEMA_DEFAULTS.items():
+                if field not in payload or payload[field] is None:
+                    updates[field] = default
+                    missing_fields[field] += 1
+
+            if updates:
+                points_updated += 1
+                if not DRY_RUN:
+                    client.set_payload(
+                        collection_name=COLLECTION,
+                        payload=updates,
+                        points=[point.id],
+                    )
+
+        offset = next_offset
+        if total_points % (BATCH_SIZE * 5) == 0:
+            print(f"  Scanned {total_points} points...")
+
+        if next_offset is None:
+            break
+
+    # ── Summary ──────────────────────────────────────────────────────────
+    print(f"\n{'═' * 50}")
+    print(f"Collection: {COLLECTION}")
+    print(f"Total points scanned: {total_points}")
+    print(f"Points with missing fields: {points_updated}")
+    print(f"Mutated: {'NO (dry run)' if DRY_RUN else 'YES'}")
+    print()
+    if missing_fields:
+        print("Missing field counts:")
+        for field, count in missing_fields.most_common():
+            print(f"  {field}: {count}")
+    else:
+        print("✅ All points match the schema — no updates needed.")
+    print(f"{'═' * 50}")
+
+
+if __name__ == "__main__":
+    main()

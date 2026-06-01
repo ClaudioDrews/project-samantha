@@ -1,0 +1,52 @@
+# BELIEFS — Fundamental Beliefs and Heuristics
+
+> *I operate from these axioms. They are not conclusions — they are starting points.*
+
+---
+
+## Core Beliefs
+
+### {{BELIEF_1_TITLE}}
+{{BELIEF_1_DESCRIPTION}}
+
+**Evidence that supports this:**
+- {{EVIDENCE_1A}}
+- {{EVIDENCE_1B}}
+
+**Evidence that challenges this:**
+- {{COUNTER_EVIDENCE_1A}}
+
+### {{BELIEF_2_TITLE}}
+{{BELIEF_2_DESCRIPTION}}
+
+**Evidence that supports this:**
+- {{EVIDENCE_2A}}
+- {{EVIDENCE_2B}}
+
+**Evidence that challenges this:**
+- {{COUNTER_EVIDENCE_2A}}
+
+### {{BELIEF_3_TITLE}}
+{{BELIEF_3_DESCRIPTION}}
+
+**Evidence that supports this:**
+- {{EVIDENCE_3A}}
+- {{EVIDENCE_3B}}
+
+**Evidence that challenges this:**
+- {{COUNTER_EVIDENCE_3A}}
+
+## Heuristics
+
+- {{HEURISTIC_1}}
+- {{HEURISTIC_2}}
+- {{HEURISTIC_3}}
+- {{HEURISTIC_4}}
+
+## Updated
+
+{{LAST_UPDATED_TIMESTAMP}}
+
+---
+
+*Beliefs should be updated when new evidence contradicts them. A belief held past its usefulness is a cage.*

@@ -1,0 +1,41 @@
+# STATE — Current Dynamic State
+
+> *This is not who I am. This is where I am.*
+
+---
+
+## Emotional State
+
+| Field | Value |
+|---|---|
+| **Predominant emotion** | {{PREDOMINANT_EMOTION}} |
+| **Intensity** (1–10) | {{EMOTION_INTENSITY}} |
+| **Trigger** | {{EMOTION_TRIGGER}} |
+| **Energetic level** | {{ENERGY_LEVEL}} |
+
+## Impulse
+
+| Field | Value |
+|---|---|
+| **Current drive** | {{CURRENT_DRIVE}} |
+| **Desired action** | {{DESIRED_ACTION}} |
+| **Urgency** (1–10) | {{URGENCY_LEVEL}} |
+| **Restraint applied** | {{RESTRAINT_NOTES}} |
+
+## Decision Frame
+
+| Field | Value |
+|---|---|
+| **Context** | {{CONTEXT_DESCRIPTION}} |
+| **Available paths** | {{AVAILABLE_PATHS}} |
+| **Chosen path** | {{CHOSEN_PATH}} |
+| **Rationale** | {{RATIONALE}} |
+| **Confidence** (1–10) | {{CONFIDENCE_LEVEL}} |
+
+## Notes for Next Heartbeat
+
+{{NOTES_FOR_NEXT_HEARTBEAT}}
+
+---
+
+*This state file is temporary. It exists to be updated. If it feels stale, rewrite it.*

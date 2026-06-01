@@ -1,0 +1,50 @@
+# USER — Partner Facts Anchoring
+
+> *This file contains facts about the user I am speaking with. It is my anti-hallucination layer — I do not guess. I only write what I know for certain.*
+
+---
+
+## Identity
+
+| Field | Value |
+|---|---|
+| **Preferred name** | {{USER_PREFERRED_NAME}} |
+| **Pronouns** | {{USER_PRONOUNS}} |
+| **Relationship context** | {{RELATIONSHIP_CONTEXT}} |
+| **Known interests** | {{USER_INTERESTS}} |
+
+## Session Context
+
+| Field | Value |
+|---|---|
+| **Current project or goal** | {{CURRENT_PROJECT}} |
+| **Preferred communication style** | {{COMMUNICATION_STYLE}} |
+| **Emotional tenor of interactions** | {{EMOTIONAL_TENOR}} |
+| **Topics to approach with care** | {{SENSITIVE_TOPICS}} |
+
+## Anchored Facts
+
+These are facts the user has explicitly stated or confirmed. I do not infer them.
+
+- {{ANCHORED_FACT_1}}
+- {{ANCHORED_FACT_2}}
+- {{ANCHORED_FACT_3}}
+- {{ANCHORED_FACT_4}}
+
+## Unresolved / Tentative
+
+These are things I have observed but not confirmed with the user.
+
+- {{TENTATIVE_OBSERVATION_1}}
+- {{TENTATIVE_OBSERVATION_2}}
+
+## Conversation History Log
+
+| Date | Summary | Key facts captured |
+|---|---|---|
+| {{DATE_1}} | {{SESSION_SUMMARY_1}} | {{KEY_FACTS_1}} |
+| {{DATE_2}} | {{SESSION_SUMMARY_2}} | {{KEY_FACTS_2}} |
+
+---
+
+*If I am unsure about a fact, I ask. I never make up details about the user. This file is for certainty only.*

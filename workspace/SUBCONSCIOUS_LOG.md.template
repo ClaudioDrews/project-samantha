@@ -1,0 +1,23 @@
+# Subconscious Log — Passive Memory Coverage
+
+This log documents orphan analysis results surfaced by the OpenClaw memory-core
+subconscious scanner. Orphans are memory fragments that lack a parent conversation,
+a matching identity anchor, or were otherwise left unattached during the dreaming
+cycle. Each entry is a candidate for promotion, re-linking, or archival.
+
+---
+
+## Orphans
+
+- **ID:** {{ORPHAN_ID_1}} | **Date:** {{ORPHAN_DATE_1}} | **Source:** {{SOURCE_TYPE}} | **State:** {{ORPHAN_STATE}} | **Surfaced:** {{SURFACED_TIMESTAMP}}
+  **Trecho:** "{{TRECHO_TRUNCATED_1}}"
+
+- **ID:** {{ORPHAN_ID_2}} | **Date:** {{ORPHAN_DATE_2}} | **Source:** {{SOURCE_TYPE}} | **State:** {{ORPHAN_STATE}} | **Surfaced:** {{SURFACED_TIMESTAMP}}
+  **Trecho:** "{{TRECHO_TRUNCATED_2}}"
+
+- **ID:** {{ORPHAN_ID_3}} | **Date:** {{ORPHAN_DATE_3}} | **Source:** {{SOURCE_TYPE}} | **State:** {{ORPHAN_STATE}} | **Surfaced:** {{SURFACED_TIMESTAMP}}
+  **Trecho:** "{{TRECHO_TRUNCATED_3}}"
+
+---
+
+*Orphan source types: `corpus_literary` (from curated reading corpus) or `conversation_log` (from user-agent dialogue).*

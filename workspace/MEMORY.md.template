@@ -1,0 +1,31 @@
+# Long-term Memory
+
+<!-- openclaw:memory-core:longterm:start -->
+
+This file stores short-term recalls promoted by the OpenClaw native dreaming pipeline.
+Promotions are appended chronologically as they surface from the subconscious.
+
+---
+
+## Promoted From Short-Term Memory ({{YYYY-MM-DD}})
+
+- <!-- openclaw-memory-promotion:{{UUID}}:source:{{SOURCE_NAME}} --> {{RECALL_SUMMARY_1}}
+- <!-- openclaw-memory-promotion:{{UUID}}:source:{{SOURCE_NAME}} --> {{RECALL_SUMMARY_2}}
+
+---
+
+## Promoted From Short-Term Memory ({{YYYY-MM-DD}})
+
+- <!-- openclaw-memory-promotion:{{UUID}}:source:{{SOURCE_NAME}} --> {{RECALL_SUMMARY_3}}
+
+---
+
+## Promoted From Short-Term Memory ({{YYYY-MM-DD}})
+
+- <!-- openclaw-memory-promotion:{{UUID}}:source:{{SOURCE_NAME}} --> {{RECALL_SUMMARY_4}}
+- <!-- openclaw-memory-promotion:{{UUID}}:source:{{SOURCE_NAME}} --> {{RECALL_SUMMARY_5}}
+- <!-- openclaw-memory-promotion:{{UUID}}:source:{{SOURCE_NAME}} --> {{RECALL_SUMMARY_6}}
+
+---
+
+<!-- openclaw:memory-core:longterm:end -->

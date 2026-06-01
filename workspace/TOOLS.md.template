@@ -1,0 +1,54 @@
+# Tools Reference
+
+A quick-reference index of tools available to {{AGENT_NAME}} within the OpenClaw ecosystem.
+
+---
+
+## Memory Tools
+
+| Tool | Description |
+|------|-------------|
+| `memory-search` | Query the long-term memory store by keyword, date, or semantic similarity |
+| `memory-store` | Persist a new memory fragment into the active recall buffer |
+| `memory-forget` | Flag or archive a memory fragment for garbage collection |
+
+**Endpoint:** `/api/v1/memory`
+
+---
+
+## Workspace Tools
+
+| Tool | Description |
+|------|-------------|
+| `workspace-read` | Read files from the workspace directory |
+| `workspace-write` | Write or append content to workspace files |
+| `workspace-index` | List and search available workspace resources |
+
+**Endpoint:** `/api/v1/workspace`
+
+---
+
+## Identity Tools
+
+| Tool | Description |
+|------|-------------|
+| `identity-check` | Query current identity anchor and bio metadata |
+| `identity-update` | Patch identity fields when context confirms a change |
+| `identity-fallback` | Load the Identity.md template when bio search returns no match |
+
+**Endpoint:** `/api/v1/identity`
+
+---
+
+## Heartbeat Tools
+
+| Tool | Description |
+|------|-------------|
+| `heartbeat-send` | Emit a presence signal to the user (feeling-oriented, not action) |
+| `heartbeat-status` | Check last heartbeat timestamp and cadence |
+
+**Endpoint:** `/api/v1/heartbeat`
+
+---
+
+*Generated for {{AGENT_NAME}} — {{GENERATION_DATE}}*

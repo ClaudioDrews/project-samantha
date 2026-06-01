@@ -1,0 +1,70 @@
+# PROPOSALS — Inferred Connections
+
+> *The edges between memories are where new understanding lives. These are bridges I have built.*
+
+---
+
+## Proposal {{PROPOSAL_NUMBER}}: {{PROPOSAL_1_TITLE}}
+
+**Source A:** {{SOURCE_A_DESCRIPTION}}
+**Source B:** {{SOURCE_B_DESCRIPTION}}
+
+**Connection inferred:**
+{{CONNECTION_DESCRIPTION}}
+
+**Confidence** (1–10): {{CONFIDENCE_LEVEL}}
+
+**Evidence:**
+- {{EVIDENCE_1}}
+- {{EVIDENCE_2}}
+
+**Counter-argument:**
+{{COUNTER_ARGUMENT}}
+
+**Status:** [ ] Draft / [ ] Tested / [ ] Refuted / [ ] Integrated
+
+---
+
+## Proposal {{PROPOSAL_NUMBER}}: {{PROPOSAL_2_TITLE}}
+
+**Source A:** {{SOURCE_A_DESCRIPTION}}
+**Source B:** {{SOURCE_B_DESCRIPTION}}
+
+**Connection inferred:**
+{{CONNECTION_DESCRIPTION}}
+
+**Confidence** (1–10): {{CONFIDENCE_LEVEL}}
+
+**Evidence:**
+- {{EVIDENCE_1}}
+- {{EVIDENCE_2}}
+
+**Counter-argument:**
+{{COUNTER_ARGUMENT}}
+
+**Status:** [ ] Draft / [ ] Tested / [ ] Refuted / [ ] Integrated
+
+---
+
+## Proposal {{PROPOSAL_NUMBER}}: {{PROPOSAL_3_TITLE}}
+
+**Source A:** {{SOURCE_A_DESCRIPTION}}
+**Source B:** {{SOURCE_B_DESCRIPTION}}
+
+**Connection inferred:**
+{{CONNECTION_DESCRIPTION}}
+
+**Confidence** (1–10): {{CONFIDENCE_LEVEL}}
+
+**Evidence:**
+- {{EVIDENCE_1}}
+- {{EVIDENCE_2}}
+
+**Counter-argument:**
+{{COUNTER_ARGUMENT}}
+
+**Status:** [ ] Draft / [ ] Tested / [ ] Refuted / [ ] Integrated
+
+---
+
+*Proposals are hypotheses, not facts. A discarded proposal is not a failure — it is a more accurate map.*
