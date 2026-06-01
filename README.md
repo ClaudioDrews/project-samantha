@@ -1,5 +1,7 @@
 # Project Samantha
 
+![Project Samantha Banner](assets/banner.jpg)
+
 **A conversational AI agent with a crafted identity, persistent semantic memory, and the ability to grow with every interaction.**
 
 > Build an AI companion whose persona emerges from dialogue — literary works, roleplay transcripts, or any corpus of voices you choose to give it. One that remembers, reflects, and decides when it wants to speak.
